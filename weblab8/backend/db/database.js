@@ -73,8 +73,9 @@ const articleRepo = {
             Article.find(
                 (err, result) => {
                     if (err) return console.log(err);
-                    resolve(result);
                     console.log(result);
+                    resolve(result);
+                   
                 });
 
         });
