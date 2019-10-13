@@ -67,12 +67,29 @@ const articleRepo = {
 
         });
     },
-    getCommentById: (postId, commentId) => {
+    getCommentByIdAndArticleId: (postId, commentId) => {
         return new Promise(async (resolve, reject) => {
 
             Article.find(
                 {
                     _id: postId,
+                    comments: {
+                        $elemMatch: {_id: commentId}
+                    }
+                },
+                (err, result) => {
+                    if (err) return console.log(err);
+                    console.log(result);
+                    resolve(result);
+                });
+
+        });
+    },
+    getCommentById: (postId, commentId) => {
+        return new Promise(async (resolve, reject) => {
+
+            Article.find(
+                {
                     comments: {
                         $elemMatch: {_id: commentId}
                     }
